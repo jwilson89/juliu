@@ -67,14 +67,19 @@ int main(int argc, char* argv[]) {
 	}
 
 	// ==== 2. Update ====
-	// (game logic will go here later)
+	// (paddle movement will go here later)
 
 	// ==== 3. Render ====
-	// Set the draw color to black (R=0 G=0, B=0, A=255)
+	// Clear screen to black
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 	//Clear the screen with the current draw color
 	SDL_RenderClear(renderer);
+
+	// Draw paddles in white
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_RenderFillRect(renderer, &paddle1);
+	SDL_RenderFillRect(renderer, &paddle2);
 
 	// Present the rendered frame to the screen
 	SDL_RenderPresent(renderer);
