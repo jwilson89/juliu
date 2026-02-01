@@ -38,6 +38,21 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
+	// Create the two paddles
+	SDL_FRect paddle1 = {
+		PADDLE_PADDING,                         // x position
+		(WINDOW_HEIGHT - PADDLE_HEIGHT) / 2.0f, // y position (centered)
+		PADDLE_WIDTH,							// width
+		PADDLE_HEIGHT							// height
+	};
+
+	SDL_FRect paddle2 = {
+		WINDOW_WIDTH - PADDLE_PADDING - PADDLE_WIDTH, // x position
+		(WINDOW_HEIGHT - PADDLE_HEIGHT) / 2.0f,       // y position
+		PADDLE_WIDTH,								  // width
+		PADDLE_HEIGHT								  // height
+	};
+
 	// Game loop control variable
 	bool running = true;
 
