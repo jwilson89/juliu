@@ -8,10 +8,11 @@ using namespace std;
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
-// Paddle dimensions
+// Paddle dimensions/configuration
 const float PADDLE_WIDTH = 15.0f;
 const float PADDLE_HEIGHT = 100.0f;
 const float PADDLE_PADDING = 20.0f; // Distance  from screen edge
+const float PADDLE_SPEED = 400.0f; // Pixels per second
 
 
 int main(int argc, char* argv[]) {
@@ -53,11 +54,22 @@ int main(int argc, char* argv[]) {
 		PADDLE_HEIGHT								  // height
 	};
 
+	// Timing variables
+	Uint64 previousTime = SDL_GetPerformanceCounter();
+	Uint64 frequency = SDL_GetPerformanceFrequency();
+
+
 	// Game loop control variable
 	bool running = true;
 
 	// the game loop
 	while (running) {
+		// ==== Calculate Delta Time ==== //
+		Uint64 currentTime = SDL_GetPerformanceCounter();
+		float deltaTime = (float)(currentTime - previousTime) / (float)frequency;
+		previousTime = currentTime;
+
+
 		// ==== 1. Handle Events ====
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
@@ -67,8 +79,14 @@ int main(int argc, char* argv[]) {
 	}
 
 	// ==== 2. Update ====
-	// (paddle movement will go here later)
 
+		// Get current keyboard state
+		const bool* keyboardState = SDL_GetKeyboardState(NULL);
+
+		// Player 1 movement (W and S keys)
+		if (keyboardState[SDL_SCANCODE_W]) {
+			paddle1.y -= PADDLE_SPEED * deltaTime;
+		}
 	// ==== 3. Render ====
 	// Clear screen to black
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
