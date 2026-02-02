@@ -87,6 +87,39 @@ int main(int argc, char* argv[]) {
 		if (keyboardState[SDL_SCANCODE_W]) {
 			paddle1.y -= PADDLE_SPEED * deltaTime;
 		}
+
+		if (keyboardState[SDL_SCANCODE_S]) {
+			paddle1.y += PADDLE_SPEED * deltaTime;
+		}
+
+		// Player 2 Movement (Up and Down arrow keys)
+		if (keyboardState[SDL_SCANCODE_UP]) {
+			paddle2.y -= PADDLE_SPEED * deltaTime;
+		}
+
+		if (keyboardState[SDL_SCANCODE_DOWN]) {
+			paddle2.y += PADDLE_SPEED * deltaTime;
+		}
+
+
+		// Clamp paddle 1 to screen bounds
+		if (paddle1.y < 0) {
+			paddle1.y = 0;
+		}
+
+		if (paddle1.y + PADDLE_HEIGHT > WINDOW_HEIGHT) {
+			paddle1.y = WINDOW_HEIGHT - PADDLE_HEIGHT;
+		}
+
+		// Clamp paddle 2 to screen bounds
+		if (paddle2.y < 0) {
+			paddle2.y = 0;
+		}
+
+		if (paddle2.y + PADDLE_HEIGHT > WINDOW_HEIGHT) {
+			paddle2.y = WINDOW_HEIGHT - PADDLE_HEIGHT;
+		}
+
 	// ==== 3. Render ====
 	// Clear screen to black
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
