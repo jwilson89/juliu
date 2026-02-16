@@ -1,0 +1,17 @@
+.vs/
+*.user
+*.suo
+*.vcxproj.user
+Debug/
+Release/
+ipch/
+*.obj
+*.exe
+*.pdb
+.vscode/
+*.vcxproj.filters
+*.ilk
+*.log
+*.idb
+.sass-cache/
+Thumbs.db
